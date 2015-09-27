@@ -1,0 +1,46 @@
+<div ng-controller="ShowController">
+  <super-navbar>
+    <super-navbar-title>
+      Show
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="padding">
+    <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+    <div ng-hide="showSpinner">
+      <h2 ng-bind="user['Name']"></h2>
+      
+      
+      
+       <p>Type: <span ng-bind="user['Type']"></span></p> 
+      
+       <p>Sex: <span ng-bind="user['Sex']"></span></p> 
+      
+       <p>Language: <span ng-bind="user['Language']"></span></p> 
+      
+       <p>Year: <span ng-bind="user['Year']"></span></p> 
+      
+       <p>Major: <span ng-bind="user['Major']"></span></p> 
+      
+       <p>Location: <span ng-bind="user['Location']"></span></p> 
+      
+       <p>Company: <span ng-bind="user['Company']"></span></p> 
+      
+       <p>Job: <span ng-bind="user['Job']"></span></p> 
+      
+       <p>Friends: <span ng-bind="user['Friends']"></span></p> 
+      
+
+
+      <super-modal-show location="user#edit?id={{ user.id }}">
+        <button class="button button-block button-positive">
+          Edit
+        </button>
+      </super-modal-show>
+
+      <button ng-click="remove(user.id)" class="button button-block button-negative">
+        Remove
+      </button>
+    </div>
+  </div>
+</div>
