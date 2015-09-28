@@ -8,11 +8,9 @@
   <div class="padding">
     <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
     <div ng-hide="showSpinner">
-      <h2 ng-bind="user['Name']"></h2>
+      <h2 ng-bind="user['Type']"></h2>
       
       
-      
-       <p>Type: <span ng-bind="user['Type']"></span></p> 
       
        <p>Sex: <span ng-bind="user['Sex']"></span></p> 
       
@@ -29,6 +27,12 @@
        <p>Job: <span ng-bind="user['Job']"></span></p> 
       
        <p>Friends: <span ng-bind="user['Friends']"></span></p> 
+      
+       <p>userId: <span ng-bind="user['userId']"></span></p> 
+      
+       <p>FirstName: <span ng-bind="user['FirstName']"></span></p> 
+      
+       <p>LastName: <span ng-bind="user['LastName']"></span></p> 
       
 
 
