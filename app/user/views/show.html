@@ -8,35 +8,16 @@
   <div class="padding">
     <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
     <div ng-hide="showSpinner">
-      <h2 ng-bind="user['Type']"></h2>
-      
-      
-      
-       <p>Sex: <span ng-bind="user['Sex']"></span></p> 
-      
-       <p>Language: <span ng-bind="user['Language']"></span></p> 
-      
-       <p>Year: <span ng-bind="user['Year']"></span></p> 
-      
-       <p>Major: <span ng-bind="user['Major']"></span></p> 
-      
-       <p>Location: <span ng-bind="user['Location']"></span></p> 
-      
-       <p>Company: <span ng-bind="user['Company']"></span></p> 
-      
-       <p>Job: <span ng-bind="user['Job']"></span></p> 
-      
-       <p>Friends: <span ng-bind="user['Friends']"></span></p> 
-      
-       <p>userId: <span ng-bind="user['userId']"></span></p> 
-      
-       <p>FirstName: <span ng-bind="user['FirstName']"></span></p> 
-      
-       <p>LastName: <span ng-bind="user['LastName']"></span></p> 
-      
+      <img ng-src="/propics/{{user.id}}.jpg" alt="No pic!" class="profile-pic"></img>
+      <h2 class="text-centered">{{user['FirstName']}} {{user['LastName']}}</h2>
+      <h5>{{user['Major']}} {{user['Type']}}, Class of {{user['Year']}}</h5>
+      <h5>{{user['Job']}} at {{user['Company']}}</h5>
+      <p>Location: <span ng-bind="user['Location']"></span></p>
+      <p>Sex: <span ng-bind="user['Sex']"></span></p>
+      <p>Language: <span ng-bind="user['Language']"></span></p>
+      <p>Friends: <span ng-bind="user['Friends']"></span></p>
 
-
-      <super-modal-show location="user#edit?id={{ user.id }}">
+      <super-modal-show location="user#edit?id={{user.id}}">
         <button class="button button-block button-positive">
           Edit
         </button>
