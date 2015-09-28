@@ -14,7 +14,7 @@ traits:
             type: integer
             example: 1234
             default: 80186
-  
+
 schemas:
   - User_collection: '{"$schema":"http://json-schema.org/schema","title":"User collection","type":"object","properties":{"objects":{"type":"array","items":{"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical User representation","properties":{"Type":{"type":"string"},"Sex":{"type":"string"},"Language":{"type":"string"},"Year":{"type":"integer"},"Major":{"type":"string"},"Location":{"type":"string"},"Company":{"type":"string"},"Job":{"type":"string"},"Friends":{"type":"string"},"userId":{"type":"string"},"FirstName":{"type":"string"},"LastName":{"type":"string"}},"required":[]}}}}'
   - User_member: '{"$schema":"http://json-schema.org/schema","type":"object","description":"The canonical User representation","properties":{"object":{"type":"object","properties":{"Type":{"type":"string"},"Sex":{"type":"string"},"Language":{"type":"string"},"Year":{"type":"integer"},"Major":{"type":"string"},"Location":{"type":"string"},"Company":{"type":"string"},"Job":{"type":"string"},"Friends":{"type":"string"},"userId":{"type":"string"},"FirstName":{"type":"string"},"LastName":{"type":"string"}},"required":[]}}}'
@@ -174,5 +174,3 @@ resourceTypes:
   type: dolan_db_collection
   /{id}:
     type: dolan_db_member
-
-
