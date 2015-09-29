@@ -116,7 +116,7 @@ angular
       var g = new Graph();
       var targetUserIds = []
       var User = supersonic.data.model('User');
-      User.all().then( function(users) {
+      User.findAll().then( function(users) {
         for (i = 0; i < users.length; i++) {
           if (users[i].Company == userData["company"]) {
             targetIds.push(users[i].id);
