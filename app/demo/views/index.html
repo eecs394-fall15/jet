@@ -6,8 +6,24 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="padding">
-    <button class="btn btn-default">Launch</button>
-  </div>
+  <form ng-submit="findPath($scope.company)">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Major</span>
+      <input type="text">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Company</span>
+      <input type="text" ng-model="$scope.company">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Location</span>
+      <input type="text">
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Language</span>
+      <input type="text">
+    </label>
+    <button class="button button-block button-positive">Take off!</button>
+  </form>
 
 </div>
