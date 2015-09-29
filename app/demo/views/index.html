@@ -9,27 +9,28 @@
   <form ng-if="targetUsers.length==0">
     <label class="item item-input item-stacked-label">
       <span class="input-label">Major</span>
-      <input type="text">
+      <input type="text"></input>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label">Company</span>
-      <input type="text" ng-model="company">
+      <input type="text" ng-model="company"></input>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label">Location</span>
-      <input type="text">
+      <input type="text"></input>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label">Language</span>
-      <input type="text">
+      <input type="text"></input>
     </label>
     <button class="button button-block button-positive" ng-click="findPath()">Take off!</button>
   </form>
-  <p></p>
-  <ol>
-    <li ng-if="targetUsers.length!=0" ng-repeat="user in targetUsers">
-      {{user.FirstName}} {{user.LastName}}
-    </li>
+  <ol ng-if="targetUsers.length!=0">
+    <super-navigate location="user#show" data-params-id="{{user.id}}" ng-repeat="user in targetUsers">
+      <li class="item item-icon-right">
+        <span>{{user['FirstName']}} {{user['LastName']}}</span>
+        <i class="icon super-ios-arrow-right"></i>
+      </li>
+    </super-navigate>
   </ol>
-
 </div>

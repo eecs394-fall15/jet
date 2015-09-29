@@ -6,7 +6,7 @@
   </super-navbar>
 
   <div>
-    <ul class="list" ng-hide="recFriends.length == 0">
+    <ul class="list" ng-hide="targetUsers.length == 0">
       <super-navigate location="user#show" data-params-id="{{friendID}}" ng-repeat="friendID in recFriends">
         <li class="item item-icon-right">
           <span>{{user['FirstName']}} {{user['LastName']}}</span>

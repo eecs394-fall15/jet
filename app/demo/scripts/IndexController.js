@@ -1,24 +1,28 @@
 angular
   .module('demo')
   .controller('IndexController', function($scope, supersonic) {
+    $scope.targetUsers = [];
+    $scope.company = '';
+    var userId = '560a50cb9a15f9001d000001';
+
     function PriorityQueue () {
       this._nodes = [];
 
       this.enqueue = function (priority, key) {
         this._nodes.push({key: key, priority: priority });
         this.sort();
-      }
+      };
       this.dequeue = function () {
         return this._nodes.shift().key;
-      }
+      };
       this.sort = function () {
         this._nodes.sort(function (a, b) {
           return a.priority - b.priority;
         });
-      }
+      };
       this.isEmpty = function () {
         return !this._nodes.length;
-      }
+      };
     }
 
     function Graph(){
@@ -27,7 +31,7 @@ angular
 
       this.addVertex = function(name, edges){
         this.vertices[name] = edges;
-      }
+      };
 
       this.shortestPath = function (start, finish) {
         var nodes = new PriorityQueue(),
@@ -53,7 +57,7 @@ angular
           smallest = nodes.dequeue();
 
           if(smallest === finish) {
-            path;
+
 
             while(previous[smallest]) {
               path.push(smallest);
@@ -80,7 +84,7 @@ angular
         }
 
         return path;
-      }
+      };
     }
 
     var computeShortestPath = function(start, targets, graph) {
@@ -98,32 +102,38 @@ angular
       } else {
         return finalPath;
       }
-    }
+    };
 
     var addVertex = function(graph, user) {
-      var friends = user.Friends
+      var friends = user.Friends;
       if (typeof(friends) != "undefined") {
-        var vertexValue = {}
+        var vertexValue = {};
         friends.split(',').forEach(function(friendId) {
            vertexValue[friendId] = 1;
-        })
+        });
         g.addVertex(user.id, vertexValue);
       }
-    }
+    };
 
     // Controller functionality here
-    $scope.findPath = function(userData) {
+    $scope.findPath = function() {
       var g = new Graph();
-      var targetUserIds = []
+      var targetUserIds = [];
       var User = supersonic.data.model('User');
-      User.findAll().then( function(users) {
+      User.findAll().then(function(users) {
         for (i = 0; i < users.length; i++) {
-          if (users[i].Company == userData["company"]) {
+          supersonic.logger.log(users[i].FirstName);
+          if (users[i].Company == $scope.company) {
             targetIds.push(users[i].id);
           }
           addVertex(g, users[i]);
         }
-      }
-      return computeShortestPath(userData["id"], targetIds, g);
-    })
+
+        targetUserIds = computeShortestPath(userId, targetIds, g);
+        for (j = 0; j < targetUserIds; j++) {
+          supersonic.logger.log("uid: "+targetUserIds[j]);
+          $scope.targetUsers.push(User.findAll(targetUserIds[j]));
+        }
+      });
+    };
   });
