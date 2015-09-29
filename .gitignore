@@ -5,3 +5,4 @@ bower_components
 .sass-cache/
 logs/
 npm-debug.log
+config/cloud.json
