@@ -83,39 +83,47 @@ angular
       }
     }
 
-    var computeShortestPath = function(start, ends, graph) {
+    var computeShortestPath = function(start, targets, graph) {
       var sizeMin = Number.MAX_VALUE;
       var finalPath = [];
-      for (i = 0; i < ends.length; i++) {
-        var path = graph.shortestPath(start, ends[i]);
+      for (i = 0; i < targets.length; i++) {
+        var path = graph.shortestPath(start, targets[i]);
         if (path.length < sizeMin && path.length > 0) {
           finalPath = path;
           sizeMin = path.length;
         }
       }
-      return finalPath.concat([start]).reverse();
+      if (finalPath.length > 0) {
+        return finalPath.concat([start]).reverse();
+      } else {
+        return finalPath;
+      }
+    }
+
+    var addVertex = function(graph, user) {
+      var friends = user.Friends
+      if (typeof(friends) != "undefined") {
+        var vertexValue = {}
+        friends.split(',').forEach(function(friendId) {
+           vertexValue[friendId] = 1;
+        })
+        g.addVertex(user.id, vertexValue);
+      }
     }
 
     // Controller functionality here
     $scope.findPath = function(userData) {
-      var userId = userData["userId"];
-
       var g = new Graph();
       var targetUserIds = []
       var User = supersonic.data.model('User');
-      User.findAll().then( function(allUsers) {
-        for (i = 0; i < allUsers.length; i++) {
-          if (allUsers[i].company == userData["company"]) {
-            targetUserIds.push(allUsers[i].id);
+      User.all().then( function(users) {
+        for (i = 0; i < users.length; i++) {
+          if (users[i].Company == userData["company"]) {
+            targetIds.push(users[i].id);
           }
-
-          var vertexValue = {}
-          allUsers[i].friends.split(',').forEach(friendId) {
-            vertexValue[friendId] = 1;
-          }
-          g.addVertex(allUsers[i].id, vertexValue);
+          addVertex(g, users[i]);
         }
-        return computeShortestPath(userId, targetIds, g);
-      })
-    }
+      }
+      return computeShortestPath(userData["id"], targetIds, g);
+    })
   });
